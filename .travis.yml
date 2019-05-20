@@ -22,6 +22,7 @@ notifications:
 deploy:
   provider: script
   script: bash ./scripts/push.sh
+  skip_cleanup: true
   on:
     python: '3.6'
 env:
