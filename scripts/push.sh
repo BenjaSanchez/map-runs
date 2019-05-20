@@ -6,13 +6,14 @@ setup_git() {
 }
 
 commit_website_files() {
-  git checkout --track origin/gh-pages
+  git fetch
+  git checkout gh-pages
   git add . *.html
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
 upload_files() {
-  git push --quiet "https://${GITHUB_TOKEN}@github.com/$BenjaSanchez/map-runs.git" gh-pages > /dev/null
+  git push --quiet "https://${GITHUB_TOKEN}@github.com/BenjaSanchez/map-runs.git" gh-pages > /dev/null
   echo "Successfully updated map."
 }
 
