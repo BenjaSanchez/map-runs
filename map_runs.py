@@ -13,6 +13,7 @@ run_map = folium.Map(
     location=[lat, lon],
     tiles='Stamen Terrain',
     zoom_start=12)
+print("Successfully initialized map")
 
 
 # Function that adds a run to the map:
@@ -37,6 +38,8 @@ os.chdir('./gps-data')
 for file in os.listdir('.'):
     add_run(run_map, file)
 os.chdir('./..')
+print("Successfully added all runs to map")
 
 # Export map:
 run_map.save('output-map.html')
+print("Successfully exported map")
