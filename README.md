@@ -1,5 +1,7 @@
 # map-runs
 
+[![Build Status](https://travis-ci.org/BenjaSanchez/map-runs.svg?branch=master)](https://travis-ci.org/BenjaSanchez/map-runs)
+
 Code for creating an HTML map with all runs mapped with [runkeeper](http://runkeeper.com) (or similar).
 
 ## Requirements
