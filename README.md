@@ -18,3 +18,7 @@ Code for creating an HTML map with all runs mapped with [runkeeper](http://runke
 4. Modify the location (variables `lat` & `lon` in `./scripts/map_runs.py`) to correspond to your hometown.
 5. Run `./scripts/map_runs.py` (make sure you have all requirements installed).
 6. Done! your map is now available at [`./output-map.html`](https://benjasanchez.github.io/map-runs/output-map.html).
+
+## Credits
+
+Thanks to @willprice for [this](https://gist.github.com/willprice/e07efd73fb7f13f917ea) helpful gist.
