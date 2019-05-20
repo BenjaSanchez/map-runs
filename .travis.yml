@@ -5,18 +5,12 @@ git:
   depth: 3
 cache:
   pip: true
-matrix:
-  include:
-    - name: "py27"
-      python: 2.7
-    - name: "py34"
-      python: 3.4
-    - name: "py35"
-      python: 3.5
-    - name: "py36"
-      python: 3.6
-    - name: "py37"
-      python: 3.7
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+- '3.7'
 install:
 - pip install -r requirements.txt
 script:
@@ -25,8 +19,11 @@ notifications:
   email:
     on_success: never
     on_failure: always
-after_success:
-  - ./scripts/push.sh
+deploy:
+  provider: script
+  script: bash ./scripts/push.sh
+  on:
+    python: '3.6'
 env:
   global:
     secure: XQB5xnmdEZD4RAXfTP4FIVZvRWstmTlKrZWgyW3k4CV1halQLaWD6xt8YM2XJdXwlMgmowD0SriJq6rGmi1IFHo4UJaJSxLA+g3rbBgPcAiYubdR11yfc9j/R+YR7QpAznpgHpw4GpxIQvWXL1fTaTiYhldSulA8nQKZQUN3zat4DPIgFa2CNvL9rov0lKCFoeKh/bZEGl3BE6H57IY8l0iCqxSmycnXEt4TbppYYgxZujzOjz3b6e74c7T3FBG0IuKoui5hDo1sW1/oUevA7wKG6Ppn2rDB+UbVpN3s8K0D9ncFWp54x5Ws7+W03biO7n6G00C0zAKfF6wVeBV1RnvdM7g+Gt3RPOtf9D2dFjfUZJBMG9BCAqSKtmVmYBrawaGeRNhz45/TOXOGTsH1OjwRNE2x/9ArLipKCKul3cwxEu6kvxs64Zawm/GZQ7X8wGmZsGwSMbhwxNCq/yY29ChGIcHt5W3sHGkUp3wWWa0awdbgH9tD9bR59aUKGhk/0ETy/hV9gZrGe5VU20To+SzgFAaUOp8EK91ElyNF3mu0DFOP1mcAYJEiI+3mEuPmDjPTmQQ2dWipgXcoozg3mA2jjyyTmGSdbBJifaqc5kx6Vx9I5Jp06AIsbDCabBe4rSibzyoq3rTj+6uZCSUNiqzkUQ6qUCvOZhMD7FiVbC4=

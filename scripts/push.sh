@@ -16,8 +16,6 @@ upload_files() {
   git push --quiet --set-upstream origin-pages gh-pages 
 }
 
-if [ "$TRAVIS_JOB_NAME" == "py36" ]; then
-  setup_git
-  commit_website_files
-  upload_files
-fi
+setup_git
+commit_website_files
+upload_files
