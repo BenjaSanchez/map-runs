@@ -14,7 +14,7 @@ python:
 install:
 - pip install -r requirements.txt
 script:
-- python map_runs.py
+- python ./scripts/map_runs.py
 notifications:
   email:
     on_success: never

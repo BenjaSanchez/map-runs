@@ -15,6 +15,6 @@ Code for creating an HTML map with all runs mapped with [runkeeper](http://runke
 1. Request your running data from the app you use for tracking runs. In the case of runkeeper, you can do this [here](https://runkeeper.com/exportData) (it takes about a week for them to send you your data).
 2. Either clone locally or download this repo. If you would like to have continuous integration set up, create the proper fork and modify the `.travis.yml` permissions accordingly.
 3. Place all your `.gpx` files in `./gps-data`. Make sure to remove the preexisting files that are there.
-4. Modify the location (variables `lat` & `lon` in `map_runs.py`) to correspond to your hometown.
-5. Run `map_runs.py` (make sure you have all requirements installed).
+4. Modify the location (variables `lat` & `lon` in `./scripts/map_runs.py`) to correspond to your hometown.
+5. Run `./scripts/map_runs.py` (make sure you have all requirements installed).
 6. Done! your map is now available at [`./output-map.html`](https://benjasanchez.github.io/map-runs/output-map.html).

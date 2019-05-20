@@ -41,5 +41,5 @@ os.chdir('./..')
 print("Successfully added all runs to map")
 
 # Export map:
-run_map.save('output-map.html')
+run_map.save('./output-map.html')
 print("Successfully exported map")
