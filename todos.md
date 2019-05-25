@@ -1,3 +1,6 @@
 * remove bike/ski/etc activities
 * add tests
-* highlight run when clicked on (+ display basic stats of the run)
+* keep run highlighted when clicked on (not possible afaik with folium atm)
+* display basic stats of the run when clicked on
+* add progress video
+* make new progress video

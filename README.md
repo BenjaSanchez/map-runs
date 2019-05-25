@@ -30,3 +30,7 @@ These steps are only necessary if you would like to update automatically your ma
 5. Follow steps 2-3-4 from the previous instructions.
 6. Commit+push your changes to the repo.
 7. Your map will be available in the `gh-pages` branch, at [`./output-map.html`](https://benjasanchez.github.io/map-runs/output-map.html).
+
+## Credits
+
+Thanks to Jörg R Schumacher ([@eHanseJoerg](https://github.com/eHanseJoerg)) for [this](https://nbviewer.jupyter.org/github/eHanseJoerg/folium/blob/master/examples/Highlight_Function.ipynb) useful jupyter notebook for plotting routes using the geoJSON format.
