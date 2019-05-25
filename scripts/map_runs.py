@@ -24,13 +24,13 @@ def add_run(base_map, file_name):
     for track in gpx.tracks:
         for segment in track.segments:
             for point in segment.points:
-                run.append([point.latitude, point.longitude])
-    
-    folium.vector_layers.PolyLine(
-        locations=run,
-        tooltip=file_name[:10],
-        color='#b80f0a',
-        opacity=0.5).add_to(base_map)
+                run.append([point.longitude,point.latitude])
+
+    geojson = folium.GeoJson({'type': 'LineString', 'coordinates': run},
+                             style_function=lambda feature: {'color': '#b80f0a', 'opacity': 0.5, 'weight': 3},
+                             highlight_function=lambda feature: {'color': '#ffc30b', 'opacity': 1, 'weight': 5},
+                             tooltip=file_name[:10])
+    geojson.add_to(base_map)
 
 
 # Add all runs in ./gps-data:
