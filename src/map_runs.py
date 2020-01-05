@@ -5,8 +5,8 @@ import folium
 import gpxpy
 
 # Location:
-lat = 57.6885178
-lon = 11.9830906
+lat = 55.760274
+lon = 12.541296
 
 # Initialize map:
 run_map = folium.Map(
@@ -25,7 +25,7 @@ def add_run(base_map, file_name):
         activity = track.name.split()[0]
         for segment in track.segments:
             for point in segment.points:
-                run.append([point.longitude,point.latitude])
+                run.append([point.longitude, point.latitude])
 
     track_name = activity + " / " + file_name[:10]
     geojson = folium.GeoJson({'type': 'LineString', 'coordinates': run},
