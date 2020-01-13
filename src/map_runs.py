@@ -1,6 +1,7 @@
 
 # Import required packages:
 import os
+import re
 import folium
 import gpxpy
 
@@ -22,12 +23,12 @@ def add_run(base_map, file_name):
     gpx = gpxpy.parse(gpx_file)
     run = list()
     for track in gpx.tracks:
-        activity = track.name.split()[0]
+        activity = re.split("\d", track.name)[0]
         for segment in track.segments:
             for point in segment.points:
                 run.append([point.longitude, point.latitude])
 
-    track_name = activity + " / " + file_name[:10]
+    track_name = activity + "/ " + file_name[:10]
     geojson = folium.GeoJson({'type': 'LineString', 'coordinates': run},
                              style_function=lambda feature: {'color': '#b80f0a', 'opacity': 0.5, 'weight': 3},
                              highlight_function=lambda feature: {'color': '#ffc30b', 'opacity': 1, 'weight': 5},
