@@ -1,6 +1,6 @@
 # map-runs
 
-[![Build Status](https://travis-ci.org/BenjaSanchez/map-runs.svg?branch=master)](https://travis-ci.org/BenjaSanchez/map-runs)
+[![Build Status](https://travis-ci.com/BenjaSanchez/map-runs.svg?branch=master)](https://travis-ci.com/BenjaSanchez/map-runs)
 
 Code for creating an HTML map with all runs mapped with [runkeeper](http://runkeeper.com) (or similar).
 
@@ -21,7 +21,7 @@ Code for creating an HTML map with all runs mapped with [runkeeper](http://runke
 
 ## Instructions for setting up continuous integration
 
-These steps are only necessary if you would like to update automatically your map as you get new data with continuous integration (CI). You will need both Github and [Travis CI](https://travis-ci.org) accounts.
+These steps are only necessary if you would like to update automatically your map as you get new data with continuous integration (CI). You will need both Github and [Travis CI](https://travis-ci.com) accounts.
 
 1. Fork this repo.
 2. Trigger CI by Travis for your fork.
