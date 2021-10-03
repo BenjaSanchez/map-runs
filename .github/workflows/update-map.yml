@@ -31,3 +31,10 @@ jobs:
     # Main script:
     - name: Build new map
       run: python ./src/map_runs.py
+
+    # Deploy to gh-pages:
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ matrix.python-version == '3.7' }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
