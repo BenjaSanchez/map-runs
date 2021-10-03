@@ -43,8 +43,8 @@ class RunMap():
 
     def add_all_runs(self, dir_name):
 
-        for file in os.listdir(dir_name):
-            self.add_run(file)
+        for file_name in os.listdir(dir_name):
+            self.add_run(os.path.join(dir_name, file_name))
         print("Successfully added all runs to map")
 
 
