@@ -1,6 +1,6 @@
 # map-runs
 
-![Build Status](https://github.com/benjasanchez/map-runs/actions/workflows/update-map.yml/badge.svg)
+[![Build Status](https://github.com/benjasanchez/map-runs/actions/workflows/github-actions.yml/badge.svg)](https://github.com/BenjaSanchez/map-runs/actions/workflows/github-actions.yml)
 
 Code for creating an HTML map with all runs mapped with [runkeeper](http://runkeeper.com) (or similar).
 
