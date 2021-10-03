@@ -1,24 +1,18 @@
-
-# Import required packages:
 import os
 import re
+
 import folium
 import gpxpy
+
 
 # Location:
 lat = 55.760274
 lon = 12.541296
 
-# Initialize map:
-run_map = folium.Map(
-    location=[lat, lon],
-    tiles='Stamen Terrain',
-    zoom_start=12)
-print("Successfully initialized map")
 
-
-# Function that adds a run to the map:
 def add_run(base_map, file_name):
+    """Function that adds a run to the map"""
+
     gpx_file = open(file_name, 'r')
     gpx = gpxpy.parse(gpx_file)
     run = list()
@@ -36,13 +30,28 @@ def add_run(base_map, file_name):
     geojson.add_to(base_map)
 
 
-# Add all runs in ./gps-data:
-os.chdir('./gps-data')
-for file in os.listdir('.'):
-    add_run(run_map, file)
-os.chdir('./..')
-print("Successfully added all runs to map")
+def create_run_map():
+    """Function that creates an updated map with all runs"""
 
-# Export map:
-run_map.save('./output-map.html')
-print("Successfully exported map")
+    # Initialize map:
+    run_map = folium.Map(
+        location=[lat, lon],
+        tiles='Stamen Terrain',
+        zoom_start=12)
+    print("Successfully initialized map")
+
+    # Add all runs in ./gps-data:
+    os.chdir('./gps-data')
+    for file in os.listdir('.'):
+        add_run(run_map, file)
+    os.chdir('./..')
+    print("Successfully added all runs to map")
+
+    # Export map:
+    run_map.save('./output-map.html')
+    print("Successfully exported map")
+
+
+# Call from shell:
+if __name__ == '__main__':
+    create_run_map()
