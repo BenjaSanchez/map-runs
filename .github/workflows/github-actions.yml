@@ -30,7 +30,7 @@ jobs:
 
     # Main script:
     - name: Build new map
-      run: python ./src/map_runs.py
+      run: python ./map-runs/map_runs.py
 
     # Prepare files to be deployed:
     - name: Prepare deployment
