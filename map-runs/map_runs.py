@@ -11,22 +11,46 @@ lon = 12.541296
 
 
 class RunMap():
+    """
+    Class that holds the folium map + a few methods to work with the map.
+    """
 
     def __init__(self):
+        """
+        Initializes the folium map.
+
+        Returns
+        =======
+        RunMap: object
+            Map: folium.Map
+                Map with predefined settings.
+        """
+
         self.Map = folium.Map(
             location=[lat, lon],
             tiles='Stamen Terrain',
             zoom_start=12
         )
+
         print("Successfully initialized map")
 
     
-        """Function that adds a run to the map"""
-
     def add_run(self, file_path):
+        """
+        Function that adds a run to the map object.
+        
+        Parameters
+        ==========
+            file_path: str
+                Path to a .gps file.
+        """
+
+        # Parse the gps file:
         file_name = os.path.basename(file_path)
         gpx_file = open(file_name, 'r')
         gpx = gpxpy.parse(gpx_file)
+
+        # Append all data related to a single activity to a list:
         run = list()
         for track in gpx.tracks:
             activity = re.split("\d", track.name)[0]
@@ -34,29 +58,49 @@ class RunMap():
                 for point in segment.points:
                     run.append([point.longitude, point.latitude])
 
-        track_name = activity + "/ " + file_name[:10]
-        geojson = folium.GeoJson({'type': 'LineString', 'coordinates': run},
-                                style_function=lambda feature: {'color': '#b80f0a', 'opacity': 0.5, 'weight': 3},
-                                highlight_function=lambda feature: {'color': '#ffc30b', 'opacity': 1, 'weight': 5},
-                                tooltip=track_name)
+        # Create a GeoJson object and add it to the map:
+        geojson = folium.GeoJson(
+            {'type': 'LineString', 'coordinates': run},
+            style_function=lambda feature: {'color': '#b80f0a', 'opacity': 0.5, 'weight': 3},
+            highlight_function=lambda feature: {'color': '#ffc30b', 'opacity': 1, 'weight': 5},
+            tooltip=activity + "/ " + file_name[:10]
+        )
         geojson.add_to(self.Map)
 
 
     def add_all_runs(self, dir_name):
+        """
+        Function that adds all runs to the map object.
+        
+        Parameters
+        ==========
+            dir_name: str
+                Folder where the .gps files are.
+        """
 
         for file_name in os.listdir(dir_name):
             self.add_run(os.path.join(dir_name, file_name))
         print("Successfully added all runs to map")
 
 
-    def export(self, file_name):
+    def save(self, file_path):
+        """
+        Function that saves the map object as a .html file.
+        
+        Parameters
+        ==========
+            file_path: str
+                Path where the .html will be saved.
+        """
 
-        self.Map.save(file_name)
+        self.Map.save(file_path)
         print("Successfully exported map")
 
 
 def create_run_map():
-    """Function that creates an updated map with all runs"""
+    """
+    Function that creates an updated map with all runs.
+    """
 
     # Initialize map:
     run_map = RunMap()
@@ -65,7 +109,7 @@ def create_run_map():
     run_map.add_all_runs('./gps-data')
 
     # Export map:
-    run_map.export('./output-map.html')
+    run_map.save('./output-map.html')
 
 
 # Call from shell:
