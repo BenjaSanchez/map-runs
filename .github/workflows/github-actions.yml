@@ -33,7 +33,7 @@ jobs:
       run: python ./src/map_runs.py
 
     # Prepare files to be deployed:
-    - name: Prepare deploy
+    - name: Prepare deployment
       if: ${{ matrix.python-version == '3.7' }}
       run: |
         mkdir ./public
