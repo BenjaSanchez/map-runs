@@ -8,3 +8,4 @@
   * add tests
   * build as python package (setup.py, __init__.py, etc)
   * add `.ini` file for `lat`/`lon` variables
+  * verbose flag

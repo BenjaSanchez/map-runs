@@ -21,9 +21,10 @@ class RunMap():
         print("Successfully initialized map")
 
     
-    def add_run(self, file_name):
         """Function that adds a run to the map"""
 
+    def add_run(self, file_path):
+        file_name = os.path.basename(file_path)
         gpx_file = open(file_name, 'r')
         gpx = gpxpy.parse(gpx_file)
         run = list()
