@@ -47,7 +47,7 @@ class RunMap():
 
         # Parse the gps file:
         file_name = os.path.basename(file_path)
-        gpx_file = open(file_name, 'r')
+        gpx_file = open(file_path, 'r')
         gpx = gpxpy.parse(gpx_file)
 
         # Append all data related to a single activity to a list:
