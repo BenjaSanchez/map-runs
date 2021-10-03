@@ -6,7 +6,7 @@ Code for creating an HTML map with all runs mapped with [runkeeper](http://runke
 
 ## Requirements
 
-* Python (tested for 3.4, 3.5, 3.6 & 3.7).
+* Python (tested for 3.5, 3.6, 3.7 & 3.8).
 * folium (`pip install folium`) for visualizing the data in a Leaflet map.
 * gpxpy (`pip install gpxpy`) for parsing the `.gpx` files.
 
