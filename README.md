@@ -1,6 +1,6 @@
 # map-runs
 
-[![Build Status](https://travis-ci.com/BenjaSanchez/map-runs.svg?branch=master)](https://travis-ci.com/BenjaSanchez/map-runs)
+![Build Status](https://github.com/benjasanchez/map-runs/actions/workflows/update-map.yml/badge.svg)
 
 Code for creating an HTML map with all runs mapped with [runkeeper](http://runkeeper.com) (or similar).
 
@@ -19,17 +19,14 @@ Code for creating an HTML map with all runs mapped with [runkeeper](http://runke
 5. Run locally `./src/map_runs.py` (make sure you have all requirements installed).
 6. Done! your map is now available at `./output-map.html`.
 
-## Instructions for setting up continuous integration
+## Instructions for keeping your own map up to date
 
-These steps are only necessary if you would like to update automatically your map as you get new data with continuous integration (CI). You will need both Github and [Travis CI](https://travis-ci.com) accounts.
+These steps are only necessary if you would like to update automatically your map as you get new data with continuous integration (CI). You will need a Github account.
 
 1. Fork this repo.
-2. Trigger CI by Travis for your fork.
-3. Get a personal access token from Github with `repo` access (instructions [here](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line)).
-4. Add said token as an environment variable (with name `GITHUB_TOKEN`) in Travis' settings for your fork.
-5. Follow steps 2-3-4 from the previous instructions.
-6. Commit+push your changes to the repo.
-7. Your map will be available in the `gh-pages` branch, at [`./output-map.html`](https://benjasanchez.github.io/map-runs/output-map.html).
+2. Follow steps 2-3-4 from the previous instructions.
+3. Commit+push your changes to the repo.
+4. Your map will be available in the `gh-pages` branch, at [`./output-map.html`](https://benjasanchez.github.io/map-runs/output-map.html).
 
 ## Credits
 
