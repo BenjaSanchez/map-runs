@@ -11,7 +11,7 @@ class RunMap():
     Class that holds the folium map + a few methods to work with the map.
     """
 
-    def __init__(self, init_file_path="./map-runs.ini"):
+    def __init__(self, init_file_path="./map-runs.ini", verbose=None):
         """
         Initializes the folium map.
 
@@ -19,6 +19,11 @@ class RunMap():
         ==========
         init_file_path: str
             Path to .ini file with map parameters.
+        verbose: bool
+            Weather any output should be printed or not. If not
+            specified, it will default to what is indicated in
+            map-runs.ini.
+
         Returns
         =======
         RunMap: object
@@ -35,6 +40,11 @@ class RunMap():
         terrain = config["map-settings"]["terrain"]
         zoom = float(config["map-settings"]["zoom"])
 
+        # Parse verbose setting if not defined + set it as an attribute:
+        if verbose is None:
+            verbose = bool(config["misc-settings"]["verbose"])
+        self.verbose = verbose
+
         # Create folium.Map object:
         self.Map = folium.Map(
             location=[lat, lon],
@@ -42,7 +52,8 @@ class RunMap():
             zoom_start=zoom
         )
 
-        print("Successfully initialized map")
+        if self.verbose:
+            print("Successfully initialized map")
 
     
     def add_run(self, file_path):
@@ -90,7 +101,9 @@ class RunMap():
 
         for file_name in os.listdir(folder_path):
             self.add_run(os.path.join(folder_path, file_name))
-        print("Successfully added all runs to map")
+
+        if self.verbose:
+            print("Successfully added all runs to map")
 
 
     def save(self, file_path="./output-map.html"):
@@ -104,13 +117,16 @@ class RunMap():
         """
 
         self.Map.save(file_path)
-        print("Successfully exported map")
+
+        if self.verbose:
+            print("Successfully exported map")
 
 
 def create_run_map(
     init_file_path="./map-runs.ini",
     data_path="./gps-data",
-    output_path="./output-map.html"
+    output_path="./output-map.html",
+    verbose=None
     ):
     """
     Function that creates an updated map with all runs.
@@ -123,10 +139,14 @@ def create_run_map(
         Path to folder with all .gps files.
     output_path: str
         Path where the .html will be saved.
+    verbose: bool
+        Weather any output should be printed or not. If not
+        specified, it will default to what is indicated in
+        map-runs.ini.
     """
 
     # Initialize map:
-    run_map = RunMap(init_file_path)
+    run_map = RunMap(init_file_path, verbose)
 
     # Add all runs:
     run_map.add_all_runs(data_path)
