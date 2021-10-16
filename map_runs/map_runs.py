@@ -68,22 +68,22 @@ class RunMap():
         geojson.add_to(self.Map)
 
 
-    def add_all_runs(self, dir_name):
+    def add_all_runs(self, folder_path="./gps-data"):
         """
         Function that adds all runs to the map object.
         
         Parameters
         ==========
-            dir_name: str
-                Folder where the .gps files are.
+        folder_path: str
+            Path to folder where the .gps files are.
         """
 
-        for file_name in os.listdir(dir_name):
-            self.add_run(os.path.join(dir_name, file_name))
+        for file_name in os.listdir(folder_path):
+            self.add_run(os.path.join(folder_path, file_name))
         print("Successfully added all runs to map")
 
 
-    def save(self, file_path):
+    def save(self, file_path="./output-map.html"):
         """
         Function that saves the map object as a .html file.
         
@@ -97,21 +97,35 @@ class RunMap():
         print("Successfully exported map")
 
 
-def create_run_map():
+def create_run_map(
+    data_path="./gps-data",
+    output_path="./output-map.html"
+    ):
     """
     Function that creates an updated map with all runs.
+
+    Parameters
+    ==========
+    data_path: str
+        Path to folder with all .gps files.
+    output_path: str
+        Path where the .html will be saved.
     """
 
     # Initialize map:
     run_map = RunMap()
 
-    # Add all runs from ./gps-data:
-    run_map.add_all_runs('./gps-data')
+    # Add all runs:
+    run_map.add_all_runs(data_path)
 
     # Export map:
-    run_map.save('./output-map.html')
+    run_map.save(output_path)
 
 
 # Call from shell:
 if __name__ == '__main__':
-    create_run_map()
+    repo_path = os.path.join(os.path.dirname(__file__), "..") #TODO: make nicer
+    create_run_map(
+        data_path=os.path.join(repo_path, "gps-data"),
+        output_path=os.path.join(repo_path, "output-map.html")
+    )

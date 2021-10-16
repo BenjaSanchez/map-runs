@@ -8,6 +8,7 @@
   * add tests
   * update links to folium & gpxpy in readme
   * add `.ini` file for `lat`/`lon` variables
+  * find proper way of getting parent directory
   * verbose flag
   * make command line tool: `map-runs ./gps-folder -o output.html -v`. Allow `.ini` parameters as input
   * index in PyPI
