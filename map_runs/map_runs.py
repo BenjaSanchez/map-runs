@@ -27,9 +27,8 @@ class RunMap():
         Returns
         =======
         RunMap: object
-            Object with the Map + a few handy methods.
-            Map: folium.Map
-                Map with settings from .ini file.
+            Object with a folium.Map attribute + a few other handy
+            attributes/methods.
         """
 
         # Set map parameters:
@@ -60,6 +59,7 @@ class RunMap():
             zoom_start=float(config["start-settings"]["starting-zoom"])
         )
 
+        # Print progress (if applicable):
         if verbose:
             print("Successfully initialized map")
 
@@ -116,12 +116,15 @@ class RunMap():
             it will default to what is indicated in map-runs.ini.
         """
 
+        # Retrieve folder path if not defined:
         if folder_path is None:
             folder_path = self.data_path
 
+        # Loop through folder and add runs to map:
         for file_name in os.listdir(folder_path):
             self.add_run(os.path.join(folder_path, file_name))
 
+        # Print progress (if applicable):
         if self.verbose:
             print("Successfully added all runs to map")
 
@@ -137,11 +140,14 @@ class RunMap():
             will default to what is indicated in map-runs.ini.
         """
 
+        # Retrieve file path if not defined:
         if file_path is None:
             file_path = self.output_path
 
+        # Save file:
         self.Map.save(file_path)
 
+        # Print progress (if applicable):
         if self.verbose:
             print("Successfully exported map")
 
