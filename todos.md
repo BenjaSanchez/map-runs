@@ -6,6 +6,10 @@
   * skip build if no data is added
 * misc:
   * add tests
-  * build as python package (setup.py, __init__.py, etc)
+  * update links to folium & gpxpy in readme
   * add `.ini` file for `lat`/`lon` variables
   * verbose flag
+  * make command line tool: `map-runs ./gps-folder -o output.html -v`. Allow `.ini` parameters as input
+  * index in PyPI
+  * organize versions
+  * history file

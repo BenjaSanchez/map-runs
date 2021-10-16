@@ -26,11 +26,11 @@ jobs:
     - name: Install requirements
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install .
 
     # Main script:
     - name: Build new map
-      run: python ./map-runs/map_runs.py
+      run: python ./map_runs/map_runs.py
 
     # Prepare files to be deployed:
     - name: Prepare deployment
