@@ -24,7 +24,7 @@ pip install .
 1. Either clone locally or download this repo.
 2. Request your running data from the app you use for tracking runs. In the case of runkeeper, you can do this [here](https://runkeeper.com/exportData) (it takes about a week for them to send you your data the first time).
 3. Place all your `.gpx` files in `./gps-data`. Make sure to remove any preexisting files.
-4. Modify the origin of your map (parameters `latitude` & `longitude` in `./map-runs.ini`) to correspond to your hometown. Customize the rest of the parameters in said  file to your liking (otherwise stick to the defaults).
+4. Modify the origin of your map (parameters `starting-latitude` & `starting-longitude` in `./map-runs.ini`) to correspond to your hometown.
 5. Follow the [installation instructions](#installation) if you have not done so yet.
 6. Run locally `./map_runs/map_runs.py`.
 7. Done! your map is now available at `./output-map.html`.

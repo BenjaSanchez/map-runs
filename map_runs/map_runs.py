@@ -32,27 +32,35 @@ class RunMap():
                 Map with settings from .ini file.
         """
 
-        # Parse map parameters:
+        # Set map parameters:
         config = ConfigParser()
         config.read(init_file_path)
-        lat = float(config["map-settings"]["latitude"])
-        lon = float(config["map-settings"]["longitude"])
-        terrain = config["map-settings"]["terrain"]
-        zoom = float(config["map-settings"]["zoom"])
+        self.run_color = config["layout-settings"]["run-color"]
+        self.run_opacity = float(config["layout-settings"]["run-opacity"])
+        self.run_weight = int(config["layout-settings"]["run-weight"])
+        self.highlight_color = config["layout-settings"]["highlight-color"]
+        self.highlight_opacity = float(config["layout-settings"]["highlight-opacity"])
+        self.highlight_weight = int(config["layout-settings"]["highlight-weight"])
 
-        # Parse verbose setting if not defined + set it as an attribute:
+        # Parse verbose setting if not defined:
         if verbose is None:
             verbose = bool(config["misc-settings"]["verbose"])
+        
+        # Set misc parameters:
         self.verbose = verbose
+        self.data_path = config["misc-settings"]["data-path"]
+        self.output_path = config["misc-settings"]["output-path"]
 
         # Create folium.Map object:
+        lat = float(config["start-settings"]["starting-latitude"])
+        lon = float(config["start-settings"]["starting-longitude"])
         self.Map = folium.Map(
             location=[lat, lon],
-            tiles=terrain,
-            zoom_start=zoom
+            tiles=config["layout-settings"]["terrain"],
+            zoom_start=float(config["start-settings"]["starting-zoom"])
         )
 
-        if self.verbose:
+        if verbose:
             print("Successfully initialized map")
 
     
@@ -82,22 +90,34 @@ class RunMap():
         # Create a GeoJson object and add it to the map:
         geojson = folium.GeoJson(
             {"type": "LineString", "coordinates": run},
-            style_function=lambda feature: {"color": "#b80f0a", "opacity": 0.5, "weight": 3},
-            highlight_function=lambda feature: {"color": "#ffc30b", "opacity": 1, "weight": 5},
+            style_function=lambda feature: {
+                "color": self.run_color,
+                "opacity": self.run_opacity,
+                "weight": self.run_weight
+            },
+            highlight_function=lambda feature: {
+                "color": self.highlight_color,
+                "opacity": self.highlight_opacity,
+                "weight": self.highlight_weight
+            },
             tooltip=activity + "/ " + file_name[:10]
         )
         geojson.add_to(self.Map)
 
 
-    def add_all_runs(self, folder_path="./gps-data"):
+    def add_all_runs(self, folder_path=None):
         """
         Function that adds all runs to the map object.
         
         Parameters
         ==========
         folder_path: str
-            Path to folder where the .gps files are.
+            Path to folder where the .gps files are. If not specified,
+            it will default to what is indicated in map-runs.ini.
         """
+
+        if folder_path is None:
+            folder_path = self.data_path
 
         for file_name in os.listdir(folder_path):
             self.add_run(os.path.join(folder_path, file_name))
@@ -106,15 +126,19 @@ class RunMap():
             print("Successfully added all runs to map")
 
 
-    def save(self, file_path="./output-map.html"):
+    def save(self, file_path=None):
         """
         Function that saves the map object as a .html file.
         
         Parameters
         ==========
         file_path: str
-            Path where the .html will be saved.
+            Path where the .html will be saved. If not specified, it
+            will default to what is indicated in map-runs.ini.
         """
+
+        if file_path is None:
+            file_path = self.output_path
 
         self.Map.save(file_path)
 
@@ -124,8 +148,8 @@ class RunMap():
 
 def create_run_map(
     init_file_path="./map-runs.ini",
-    data_path="./gps-data",
-    output_path="./output-map.html",
+    data_path=None,
+    output_path=None,
     verbose=None
     ):
     """
@@ -136,13 +160,14 @@ def create_run_map(
     init_file_path: str
         Path to .ini file with map parameters.
     data_path: str
-        Path to folder with all .gps files.
+        Path to folder with all .gps files. If not specified, it will
+        default to what is indicated in map-runs.ini.
     output_path: str
-        Path where the .html will be saved.
+        Path where the .html will be saved. If not specified, it will
+        default to what is indicated in map-runs.ini.
     verbose: bool
-        Weather any output should be printed or not. If not
-        specified, it will default to what is indicated in
-        map-runs.ini.
+        Weather any output should be printed or not. If not specified,
+        it will default to what is indicated in map-runs.ini.
     """
 
     # Initialize map:
@@ -158,8 +183,4 @@ def create_run_map(
 # Call from shell:
 if __name__ == "__main__":
     repo_path = os.path.join(os.path.dirname(__file__), "..") #TODO: make nicer
-    create_run_map(
-        init_file_path=os.path.join(repo_path, "map-runs.ini"),
-        data_path=os.path.join(repo_path, "gps-data"),
-        output_path=os.path.join(repo_path, "output-map.html")
-    )
+    create_run_map(init_file_path=os.path.join(repo_path, "map-runs.ini"))

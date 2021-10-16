@@ -37,7 +37,8 @@ jobs:
       if: ${{ matrix.python-version == '3.7' }}
       run: |
         mkdir ./public
-        cp ./{README.md,_config.yml,output-map.html} ./public
+        OUTPUT_PATH=$(awk -F '=' '{if (! ($0 ~ /^;/) && $0 ~ /output-path/) print $2}' map-runs.ini | tr -d ' ')
+        cp ./{README.md,_config.yml,$OUTPUT_PATH} ./public
 
     # Deploy to gh-pages:
     - name: Deploy
