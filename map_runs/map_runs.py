@@ -41,13 +41,13 @@ class RunMap():
         
         Parameters
         ==========
-            file_path: str
-                Path to a .gps file.
+        file_path: str
+            Path to a .gps file.
         """
 
         # Parse the gps file:
         file_name = os.path.basename(file_path)
-        gpx_file = open(file_path, 'r')
+        gpx_file = open(file_path, "r")
         gpx = gpxpy.parse(gpx_file)
 
         # Append all data related to a single activity to a list:
@@ -60,9 +60,9 @@ class RunMap():
 
         # Create a GeoJson object and add it to the map:
         geojson = folium.GeoJson(
-            {'type': 'LineString', 'coordinates': run},
-            style_function=lambda feature: {'color': '#b80f0a', 'opacity': 0.5, 'weight': 3},
-            highlight_function=lambda feature: {'color': '#ffc30b', 'opacity': 1, 'weight': 5},
+            {"type": "LineString", "coordinates": run},
+            style_function=lambda feature: {"color": "#b80f0a", "opacity": 0.5, "weight": 3},
+            highlight_function=lambda feature: {"color": "#ffc30b", "opacity": 1, "weight": 5},
             tooltip=activity + "/ " + file_name[:10]
         )
         geojson.add_to(self.Map)
@@ -89,8 +89,8 @@ class RunMap():
         
         Parameters
         ==========
-            file_path: str
-                Path where the .html will be saved.
+        file_path: str
+            Path where the .html will be saved.
         """
 
         self.Map.save(file_path)
@@ -123,7 +123,7 @@ def create_run_map(
 
 
 # Call from shell:
-if __name__ == '__main__':
+if __name__ == "__main__":
     repo_path = os.path.join(os.path.dirname(__file__), "..") #TODO: make nicer
     create_run_map(
         data_path=os.path.join(repo_path, "gps-data"),
