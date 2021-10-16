@@ -106,6 +106,9 @@ venv.bak/
 # pyCharm
 .idea/
 
+# VScode
+.vscode/
+
 # Runkeeper undesired files
 gps-data/measurements.csv
 gps-data/cardioActivities.csv
