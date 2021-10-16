@@ -1,3 +1,4 @@
+from configparser import ConfigParser
 import os
 import re
 
@@ -5,31 +6,40 @@ import folium
 import gpxpy
 
 
-# Location:
-lat = 55.760274
-lon = 12.541296
-
-
 class RunMap():
     """
     Class that holds the folium map + a few methods to work with the map.
     """
 
-    def __init__(self):
+    def __init__(self, init_file_path="./map-runs.ini"):
         """
         Initializes the folium map.
 
+        Parameters
+        ==========
+        init_file_path: str
+            Path to .ini file with map parameters.
         Returns
         =======
         RunMap: object
+            Object with the Map + a few handy methods.
             Map: folium.Map
-                Map with predefined settings.
+                Map with settings from .ini file.
         """
 
+        # Parse map parameters:
+        config = ConfigParser()
+        config.read(init_file_path)
+        lat = float(config["map-settings"]["latitude"])
+        lon = float(config["map-settings"]["longitude"])
+        terrain = config["map-settings"]["terrain"]
+        zoom = float(config["map-settings"]["zoom"])
+
+        # Create folium.Map object:
         self.Map = folium.Map(
             location=[lat, lon],
-            tiles='Stamen Terrain',
-            zoom_start=12
+            tiles=terrain,
+            zoom_start=zoom
         )
 
         print("Successfully initialized map")
@@ -98,6 +108,7 @@ class RunMap():
 
 
 def create_run_map(
+    init_file_path="./map-runs.ini",
     data_path="./gps-data",
     output_path="./output-map.html"
     ):
@@ -106,6 +117,8 @@ def create_run_map(
 
     Parameters
     ==========
+    init_file_path: str
+        Path to .ini file with map parameters.
     data_path: str
         Path to folder with all .gps files.
     output_path: str
@@ -113,7 +126,7 @@ def create_run_map(
     """
 
     # Initialize map:
-    run_map = RunMap()
+    run_map = RunMap(init_file_path)
 
     # Add all runs:
     run_map.add_all_runs(data_path)
@@ -126,6 +139,7 @@ def create_run_map(
 if __name__ == "__main__":
     repo_path = os.path.join(os.path.dirname(__file__), "..") #TODO: make nicer
     create_run_map(
+        init_file_path=os.path.join(repo_path, "map-runs.ini"),
         data_path=os.path.join(repo_path, "gps-data"),
         output_path=os.path.join(repo_path, "output-map.html")
     )
