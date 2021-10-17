@@ -7,7 +7,6 @@
 * misc:
   * add tests
   * update links to folium & gpxpy homepages + terrain customizations in readme
-  * find proper way of getting parent directory
   * make command line tool: `map-runs ./gps-folder -o output.html -v`. Allow `.ini` parameters as input
   * index in PyPI
   * organize versions

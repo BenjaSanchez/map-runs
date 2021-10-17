@@ -1,4 +1,5 @@
 from configparser import ConfigParser
+from pathlib import Path
 import os
 import re
 
@@ -6,12 +7,19 @@ import folium
 import gpxpy
 
 
+repo_path = Path(__file__).parents[1]
+
+
 class RunMap():
     """
     Class that holds the folium map + a few methods to work with the map.
     """
 
-    def __init__(self, init_file_path="./map-runs.ini", verbose=None):
+    def __init__(
+        self,
+        init_file_path=os.path.join(repo_path, "map-runs.ini"),
+        verbose=None
+    ):
         """
         Initializes the folium map.
 
@@ -112,7 +120,7 @@ class RunMap():
         Parameters
         ==========
         folder_path: str
-            Path to folder where the .gps files are. If not specified,
+            Path to folder where the .gpx files are. If not specified,
             it will default to what is indicated in map-runs.ini.
         """
 
@@ -153,7 +161,7 @@ class RunMap():
 
 
 def create_run_map(
-    init_file_path="./map-runs.ini",
+    init_file_path=os.path.join(repo_path, "map-runs.ini"),
     data_path=None,
     output_path=None,
     verbose=None
@@ -166,7 +174,7 @@ def create_run_map(
     init_file_path: str
         Path to .ini file with map parameters.
     data_path: str
-        Path to folder with all .gps files. If not specified, it will
+        Path to folder with all .gpx files. If not specified, it will
         default to what is indicated in map-runs.ini.
     output_path: str
         Path where the .html will be saved. If not specified, it will
@@ -188,5 +196,4 @@ def create_run_map(
 
 # Call from shell:
 if __name__ == "__main__":
-    repo_path = os.path.join(os.path.dirname(__file__), "..") #TODO: make nicer
     create_run_map(init_file_path=os.path.join(repo_path, "map-runs.ini"))
