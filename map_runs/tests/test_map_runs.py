@@ -8,7 +8,7 @@ import pytest
 from map_runs.map_runs import create_run_map
 
 
-repo_path = Path(__file__).parents[2]
+repo_path = Path(__file__).parents[2].absolute()
 
 
 @pytest.fixture

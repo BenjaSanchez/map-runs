@@ -7,7 +7,7 @@ import folium
 import gpxpy
 
 
-repo_path = Path(__file__).parents[1]
+repo_path = Path(__file__).parents[1].absolute()
 
 
 class RunMap():
