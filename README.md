@@ -4,8 +4,8 @@
 
 Code for creating an HTML map with all runs mapped with [runkeeper](http://runkeeper.com) (or similar). It uses:
 
-* [gpxpy](https://pypi.org/project/gpxpy) for parsing the `.gpx` files.
-* [folium](https://pypi.org/project/folium) for visualizing the data in a Leaflet map.
+* [gpxpy](https://github.com/tkrajina/gpxpy) for parsing the `.gpx` files.
+* [folium](https://python-visualization.github.io/folium) for visualizing the data in a Leaflet map.
 
 ## Installation
 
@@ -42,7 +42,7 @@ These steps are only necessary if you would like to update automatically your ma
 
 You can customize your map to your liking by changing any of the parameters in the `map-runs.ini` file. Some considerations for this:
 
-* You can find folium's options for terrain customization [here](???).
+* You can find folium's options for terrain customization [here](https://python-visualization.github.io/folium/modules.html#folium.folium.Map).
 * You can store the `.gpx` files in any folder, as long as you update the `data-path` parameter to that location.
 * If you change the name of the output map (parameter `output-path`) and you have set up continuous integration, beware that the location of your map in the `gh-pages` branch will change accordingly.
 
