@@ -5,7 +5,6 @@
   * switch to better rendering (folium is slow)
   * skip build if no data is added
 * misc:
-  * add tests
   * update links to folium & gpxpy homepages + terrain customizations in readme
   * make command line tool: `map-runs ./gps-folder -o output.html -v`. Allow `.ini` parameters as input
   * index in PyPI

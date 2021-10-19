@@ -28,14 +28,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install .
 
-    # Main script:
-    - name: Build new map
-      run: python ./map_runs/map_runs.py
+    # Pytest:
+    - name: Pytest
+      run: pytest -v --flake8
 
-    # Prepare files to be deployed:
-    - name: Prepare deployment
+    # Build new map + prepare for deployment:
+    - name: Build new map
       if: ${{ matrix.python-version == '3.7' }}
       run: |
+        python ./map_runs/map_runs.py
         mkdir ./public
         OUTPUT_PATH=$(awk -F '=' '{if (! ($0 ~ /^;/) && $0 ~ /output-path/) print $2}' map-runs.ini | tr -d ' ')
         cp ./{README.md,_config.yml,$OUTPUT_PATH} ./public
