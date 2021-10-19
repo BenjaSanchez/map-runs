@@ -11,4 +11,5 @@ setup(
     description='Map GPS runs in a single map',
     packages=find_packages(),
     install_requires=requirements,
+    tests_require='pytest',
 )

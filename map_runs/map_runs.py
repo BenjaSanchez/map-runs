@@ -52,7 +52,7 @@ class RunMap():
         # Parse verbose setting if not defined:
         if verbose is None:
             verbose = bool(config["misc-settings"]["verbose"])
-        
+
         # Set misc parameters:
         self.verbose = verbose
         self.data_path = config["misc-settings"]["data-path"]
@@ -71,11 +71,10 @@ class RunMap():
         if verbose:
             print("Successfully initialized map")
 
-    
     def add_run(self, file_path):
         """
         Function that adds a run to the map object.
-        
+
         Parameters
         ==========
         file_path: str
@@ -90,7 +89,7 @@ class RunMap():
         # Append all data related to a single activity to a list:
         run = list()
         for track in gpx.tracks:
-            activity = re.split("\d", track.name)[0]
+            activity = re.split(r"\d", track.name)[0]
             for segment in track.segments:
                 for point in segment.points:
                     run.append([point.longitude, point.latitude])
@@ -112,11 +111,10 @@ class RunMap():
         )
         geojson.add_to(self.Map)
 
-
     def add_all_runs(self, folder_path=None):
         """
         Function that adds all runs to the map object.
-        
+
         Parameters
         ==========
         folder_path: str
@@ -136,11 +134,10 @@ class RunMap():
         if self.verbose:
             print("Successfully added all runs to map")
 
-
     def save(self, file_path=None):
         """
         Function that saves the map object as a .html file.
-        
+
         Parameters
         ==========
         file_path: str
@@ -165,7 +162,7 @@ def create_run_map(
     data_path=None,
     output_path=None,
     verbose=None
-    ):
+):
     """
     Function that creates an updated map with all runs.
 
