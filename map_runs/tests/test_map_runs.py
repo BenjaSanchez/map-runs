@@ -1,5 +1,6 @@
 from configparser import ConfigParser
 from pathlib import Path
+from pkg_resources import resource_filename
 from shutil import copyfile
 import os
 
@@ -10,6 +11,7 @@ import map_runs
 
 
 REPO_PATH = Path(os.path.dirname(map_runs.__file__)).parent.absolute()
+INIT_FILE_PATH = resource_filename("map_runs", "map-runs.ini")
 
 
 @pytest.fixture
@@ -53,7 +55,7 @@ def test_create_run_map_alt_ini(capsys, tmp_path, tmp_output_path):
 
     # Create new map-runs.ini file from old one:
     config = ConfigParser()
-    config.read(os.path.join(REPO_PATH, "map-runs.ini"))
+    config.read(INIT_FILE_PATH)
     config["start-settings"]["starting-longitude"] = "10"
     config["layout-settings"]["highlight-color"] = "#b80f0a"
     config["misc-settings"]["output-path"] = tmp_output_path

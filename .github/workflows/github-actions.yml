@@ -38,7 +38,7 @@ jobs:
       run: |
         python ./map_runs/map_runs.py
         mkdir ./public
-        OUTPUT_PATH=$(awk -F '=' '{if (! ($0 ~ /^;/) && $0 ~ /output-path/) print $2}' map-runs.ini | tr -d ' ')
+        OUTPUT_PATH=$(awk -F '=' '{if (! ($0 ~ /^;/) && $0 ~ /output-path/) print $2}' ./map_runs/map-runs.ini | tr -d ' ')
         cp ./{README.md,_config.yml,$OUTPUT_PATH} ./public
 
     # Deploy to gh-pages:

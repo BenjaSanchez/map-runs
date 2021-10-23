@@ -24,7 +24,7 @@ pip install .
 1. Either clone locally or download this repo.
 2. Request your running data from the app you use for tracking runs. In the case of runkeeper, you can do this [here](https://runkeeper.com/exportData) (it takes about a week for them to send you your data the first time).
 3. Place all your `.gpx` files in `./gps-data`. Make sure to remove any preexisting files.
-4. Modify the origin of your map (parameters `starting-latitude` & `starting-longitude` in `./map-runs.ini`) to correspond to your hometown.
+4. Modify the origin of your map (parameters `starting-latitude` & `starting-longitude` in `./map_runs/map-runs.ini`) to correspond to your hometown.
 5. Follow the [installation instructions](#installation) if you have not done so yet.
 6. Run locally `./map_runs/map_runs.py`.
 7. Done! your map is now available at `./output-map.html`.
@@ -40,7 +40,7 @@ These steps are only necessary if you would like to update automatically your ma
 
 ### Additional customizations
 
-You can customize your map to your liking by changing any of the parameters in the `map-runs.ini` file. Some considerations for this:
+You can customize your map to your liking by changing any of the parameters in the `./map_runs/map-runs.ini` file. Some considerations for this:
 
 * You can find folium's options for terrain customization [here](https://python-visualization.github.io/folium/modules.html#folium.folium.Map).
 * You can store the `.gpx` files in any folder, as long as you update the `data-path` parameter to that location.

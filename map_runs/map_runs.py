@@ -1,16 +1,13 @@
 from configparser import ConfigParser
-from pathlib import Path
+from pkg_resources import resource_filename
 import os
 import re
 
 import folium
 import gpxpy
 
-import map_runs
 
-
-REPO_PATH = Path(os.path.dirname(map_runs.__file__)).parent.absolute()
-INIT_FILE_PATH = os.path.join(REPO_PATH, "map-runs.ini")
+INIT_FILE_PATH = resource_filename("map_runs", "map-runs.ini")
 
 
 class RunMap():
