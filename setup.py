@@ -12,5 +12,5 @@ setup(
     packages=find_packages(),
     install_requires=requirements,
     tests_require="pytest",
-    data_files=[("map_runs", ["map-runs.ini"])],
+    data_files=[("map_runs", ["map_runs/map-runs.ini"])],
 )
