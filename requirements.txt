@@ -2,7 +2,8 @@
 folium
 gpxpy
 
-# Requirements for testing:
+# Requirements for testing pipeline:
+wheel
 pytest
 pytest-flake8
 flake8==3.9.2
