@@ -35,7 +35,7 @@ def assert_run_map_results(capsys, tmp_output_path, verbose):
 
     # Check if file was created in the proper place:
     assert os.path.isfile(tmp_output_path)
-    assert not os.path.isfile(os.path.join(REPO_PATH, "output.html"))
+    assert not os.path.isfile("output.html")
 
     # Check verbosity:
     assert verbose == (capsys.readouterr().out != "")
