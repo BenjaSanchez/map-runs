@@ -1,17 +1,15 @@
 from configparser import ConfigParser
-from pathlib import Path
 from pkg_resources import resource_filename
-from shutil import copyfile
+from shutil import copytree
 import os
 
 import pytest
 
 from map_runs.map_runs import create_run_map
-import map_runs
 
 
-REPO_PATH = Path(os.path.dirname(map_runs.__file__)).parent.absolute()
 INIT_FILE_PATH = resource_filename("map_runs", "map-runs.ini")
+TEST_DATA_PATH = resource_filename("map_runs", "tests/data")
 
 
 @pytest.fixture
@@ -70,16 +68,9 @@ def test_create_run_map_alt_ini(capsys, tmp_path, tmp_output_path):
 def test_create_run_map_alt_data(capsys, tmp_path, tmp_output_path):
     """Test function with data in a different path."""
 
-    # Create smaller dataset:
-    data_path = os.path.join(REPO_PATH, "gps-data")
+    # Copy smaller dataset:
     tmp_data_path = os.path.join(tmp_path, "gps-data")
-    os.mkdir(tmp_data_path)
-    for file_name in os.listdir(data_path):
-        if file_name.startswith("2017-07"):
-            copyfile(
-                os.path.join(data_path, file_name),
-                os.path.join(tmp_data_path, file_name)
-            )
+    copytree(TEST_DATA_PATH, tmp_data_path)
 
     create_run_map(data_path=tmp_data_path, output_path=tmp_output_path)
     assert_run_map_results(capsys, tmp_output_path, True)
