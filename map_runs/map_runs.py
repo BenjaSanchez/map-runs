@@ -6,8 +6,11 @@ import re
 import folium
 import gpxpy
 
+import map_runs
 
-repo_path = Path(__file__).parents[1].absolute()
+
+REPO_PATH = Path(os.path.dirname(map_runs.__file__)).parent.absolute()
+INIT_FILE_PATH = os.path.join(REPO_PATH, "map-runs.ini")
 
 
 class RunMap():
@@ -15,11 +18,7 @@ class RunMap():
     Class that holds the folium map + a few methods to work with the map.
     """
 
-    def __init__(
-        self,
-        init_file_path=os.path.join(repo_path, "map-runs.ini"),
-        verbose=None
-    ):
+    def __init__(self, init_file_path=INIT_FILE_PATH, verbose=None):
         """
         Initializes the folium map.
 
@@ -157,12 +156,7 @@ class RunMap():
             print("Successfully exported map")
 
 
-def create_run_map(
-    init_file_path=os.path.join(repo_path, "map-runs.ini"),
-    data_path=None,
-    output_path=None,
-    verbose=None
-):
+def create_run_map(init_file_path=INIT_FILE_PATH, data_path=None, output_path=None, verbose=None):
     """
     Function that creates an updated map with all runs.
 
@@ -193,4 +187,4 @@ def create_run_map(
 
 # Call from shell:
 if __name__ == "__main__":
-    create_run_map(init_file_path=os.path.join(repo_path, "map-runs.ini"))
+    create_run_map(init_file_path=INIT_FILE_PATH)

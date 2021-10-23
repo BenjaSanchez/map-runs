@@ -6,9 +6,10 @@ import os
 import pytest
 
 from map_runs.map_runs import create_run_map
+import map_runs
 
 
-repo_path = Path(__file__).parents[2].absolute()
+REPO_PATH = Path(os.path.dirname(map_runs.__file__)).parent.absolute()
 
 
 @pytest.fixture
@@ -34,7 +35,7 @@ def assert_run_map_results(capsys, tmp_output_path, verbose):
 
     # Check if file was created in the proper place:
     assert os.path.isfile(tmp_output_path)
-    assert not os.path.isfile(os.path.join(repo_path, "output.html"))
+    assert not os.path.isfile(os.path.join(REPO_PATH, "output.html"))
 
     # Check verbosity:
     assert verbose == (capsys.readouterr().out != "")
@@ -52,7 +53,7 @@ def test_create_run_map_alt_ini(capsys, tmp_path, tmp_output_path):
 
     # Create new map-runs.ini file from old one:
     config = ConfigParser()
-    config.read(os.path.join(repo_path, "map-runs.ini"))
+    config.read(os.path.join(REPO_PATH, "map-runs.ini"))
     config["start-settings"]["starting-longitude"] = "10"
     config["layout-settings"]["highlight-color"] = "#b80f0a"
     config["misc-settings"]["output-path"] = tmp_output_path
@@ -68,7 +69,7 @@ def test_create_run_map_alt_data(capsys, tmp_path, tmp_output_path):
     """Test function with data in a different path."""
 
     # Create smaller dataset:
-    data_path = os.path.join(repo_path, "gps-data")
+    data_path = os.path.join(REPO_PATH, "gps-data")
     tmp_data_path = os.path.join(tmp_path, "gps-data")
     os.mkdir(tmp_data_path)
     for file_name in os.listdir(data_path):
