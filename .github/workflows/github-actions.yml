@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
+        python-version: [3.8, 3.9, 3.10]
 
     steps:
 
@@ -35,7 +35,7 @@ jobs:
 
     # Build new map + prepare for deployment:
     - name: Build new map
-      if: ${{ matrix.python-version == '3.7' }}
+      if: ${{ matrix.python-version == '3.8' }}
       run: |
         python ./map_runs/map_runs.py
         mkdir ./public
@@ -45,7 +45,7 @@ jobs:
     # Deploy to gh-pages:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
-      if: ${{ matrix.python-version == '3.7' }}
+      if: ${{ matrix.python-version == '3.8' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
