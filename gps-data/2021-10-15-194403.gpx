@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.1"
+  creator="Runkeeper - http://www.runkeeper.com"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/1"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd"
+  xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1">
+<trk>
+  <name><![CDATA[Running 10/15/21 7:44 pm]]></name>
+  <time>2021-10-15T22:44:03Z</time>
+<trkseg>
+<trkpt lat="-33.364632000" lon="-70.539178000"><ele>857.2</ele><time>2021-10-15T22:44:03Z</time></trkpt>
+<trkpt lat="-33.337319000" lon="-70.544993000"><ele>853.0</ele><time>2021-10-15T23:06:33Z</time></trkpt>
+<trkpt lat="-33.338080000" lon="-70.537204000"><ele>849.1</ele><time>2021-10-15T23:11:34Z</time></trkpt>
+<trkpt lat="-33.342579000" lon="-70.527387000"><ele>846.1</ele><time>2021-10-15T23:21:47Z</time></trkpt>
+<trkpt lat="-33.345254000" lon="-70.521885000"><ele>846.1</ele><time>2021-10-15T23:26:48Z</time></trkpt>
+<trkpt lat="-33.352043000" lon="-70.524172000"><ele>846.1</ele><time>2021-10-15T23:31:49Z</time></trkpt>
+<trkpt lat="-33.354778000" lon="-70.532142000"><ele>849.0</ele><time>2021-10-15T23:36:49Z</time></trkpt>
+<trkpt lat="-33.360596000" lon="-70.535727000"><ele>847.0</ele><time>2021-10-15T23:43:01Z</time></trkpt>
+<trkpt lat="-33.360596000" lon="-70.535727000"><ele>840.7</ele><time>2021-10-15T23:43:02Z</time></trkpt>
+</trkseg>
+</trk>
+</gpx>
