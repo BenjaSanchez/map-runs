@@ -15,7 +15,7 @@ In a Python environment (created with e.g. [Conda](https://docs.conda.io/en/late
 pip install .
 ```
 
-**NB:** Tested for Python 3.6, 3.7, 3.8 & 3.9.
+**NB:** Tested for Python 3.8, 3.9 & 3.10.
 
 ## Usage
 
