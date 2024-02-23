@@ -5,6 +5,9 @@
   * switch to better rendering (folium is slow)
   * skip build if no data is added
 * misc:
+  * unpin flake8
+  * unpin pytest
+  * unpin folium
   * make command line tool: `map-runs ./gps-folder -o output.html -v`. Allow `.ini` parameters as input
   * index in PyPI
   * organize versions
