@@ -112,3 +112,6 @@ venv.bak/
 # Runkeeper undesired files
 gps-data/measurements.csv
 gps-data/cardioActivities.csv
+
+# Mac stuff
+.DS_Store
