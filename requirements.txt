@@ -4,4 +4,3 @@ gpxpy
 
 # Requirements for testing:
 pytest-flake8
-flake8==3.9.2
