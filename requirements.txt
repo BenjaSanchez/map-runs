@@ -1,5 +1,5 @@
 # Requirements for code:
-folium
+folium<0.15.0
 gpxpy
 
 # Requirements for testing:
