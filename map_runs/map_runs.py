@@ -60,8 +60,13 @@ class RunMap():
         lon = float(config["start-settings"]["starting-longitude"])
         tiles = config["layout-settings"]["terrain"]
         carto_api_key = os.environ.get("CARTO_API_KEY")
-        if carto_api_key and tiles.lower().replace(" ", "") == "cartodbpositron":
-            tiles = providers.CartoDB.Positron(apikey=carto_api_key)
+        carto_providers = {
+            "cartodbpositron": providers.CartoDB.Positron,
+            "cartodbvoyager": providers.CartoDB.Voyager,
+        }
+        carto_provider = carto_providers.get(tiles.lower().replace(" ", ""))
+        if carto_api_key and carto_provider:
+            tiles = carto_provider(apikey=carto_api_key)
 
         self.Map = folium.Map(
             location=[lat, lon],
