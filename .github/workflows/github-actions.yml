@@ -29,9 +29,13 @@ jobs:
         pip install wheel
         pip install .
 
+    # Lint:
+    - name: Flake8
+      run: flake8
+
     # Pytest:
     - name: Pytest
-      run: pytest -v --flake8
+      run: pytest -v
 
     # Build new map + prepare for deployment:
     - name: Build new map
