@@ -59,18 +59,16 @@ class RunMap():
         lat = float(config["start-settings"]["starting-latitude"])
         lon = float(config["start-settings"]["starting-longitude"])
         tiles = config["layout-settings"]["terrain"]
+        tile_attribution = config["layout-settings"]["terrain-attribution"]
         carto_api_key = os.environ.get("CARTO_API_KEY")
-        carto_providers = {
-            "cartodbpositron": providers.CartoDB.Positron,
-            "cartodbvoyager": providers.CartoDB.Voyager,
-        }
-        carto_provider = carto_providers.get(tiles.lower().replace(" ", ""))
-        if carto_api_key and carto_provider:
-            tiles = carto_provider(apikey=carto_api_key)
+        if carto_api_key:
+            tiles = providers.CartoDB.Voyager(apikey=carto_api_key)
+            tile_attribution = None
 
         self.Map = folium.Map(
             location=[lat, lon],
             tiles=tiles,
+            attr=tile_attribution,
             zoom_start=float(config["start-settings"]["starting-zoom"])
         )
 
