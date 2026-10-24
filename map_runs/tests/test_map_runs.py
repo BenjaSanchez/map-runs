@@ -1,5 +1,5 @@
 from configparser import ConfigParser
-from pkg_resources import resource_filename
+from importlib.resources import files
 from shutil import copytree
 import os
 
@@ -8,8 +8,8 @@ import pytest
 from map_runs.map_runs import create_run_map
 
 
-INIT_FILE_PATH = resource_filename("map_runs", "map-runs.ini")
-TEST_DATA_PATH = resource_filename("map_runs", "tests/data")
+INIT_FILE_PATH = str(files("map_runs").joinpath("map-runs.ini"))
+TEST_DATA_PATH = str(files("map_runs").joinpath("tests", "data"))
 
 
 @pytest.fixture

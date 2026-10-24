@@ -3,6 +3,5 @@ folium
 gpxpy
 
 # Requirements for testing:
-pytest-flake8
-pytest<7.0
-flake8==3.9.2
+pytest
+flake8

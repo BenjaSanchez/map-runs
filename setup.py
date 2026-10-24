@@ -9,6 +9,7 @@ with open("requirements.txt") as reqs:
 setup(
     name="map-runs",
     description="Map GPS runs in a single map",
+    python_requires=">=3.9",
     packages=find_packages(),
     install_requires=requirements,
     tests_require="pytest",
