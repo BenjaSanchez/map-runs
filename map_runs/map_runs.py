@@ -1,5 +1,5 @@
 from configparser import ConfigParser
-from pkg_resources import resource_filename
+from importlib.resources import files
 import os
 import re
 
@@ -7,7 +7,7 @@ import folium
 import gpxpy
 
 
-INIT_FILE_PATH = resource_filename("map_runs", "map-runs.ini")
+INIT_FILE_PATH = str(files("map_runs").joinpath("map-runs.ini"))
 
 
 class RunMap():
