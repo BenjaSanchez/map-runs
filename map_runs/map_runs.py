@@ -5,6 +5,7 @@ import re
 
 import folium
 import gpxpy
+from xyzservices import providers
 
 
 INIT_FILE_PATH = str(files("map_runs").joinpath("map-runs.ini"))
@@ -57,9 +58,14 @@ class RunMap():
         # Create folium.Map object:
         lat = float(config["start-settings"]["starting-latitude"])
         lon = float(config["start-settings"]["starting-longitude"])
+        tiles = config["layout-settings"]["terrain"]
+        carto_api_key = os.environ.get("CARTO_API_KEY")
+        if carto_api_key and tiles.lower().replace(" ", "") == "cartodbpositron":
+            tiles = providers.CartoDB.Positron(apikey=carto_api_key)
+
         self.Map = folium.Map(
             location=[lat, lon],
-            tiles=config["layout-settings"]["terrain"],
+            tiles=tiles,
             zoom_start=float(config["start-settings"]["starting-zoom"])
         )
 

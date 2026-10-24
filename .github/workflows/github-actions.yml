@@ -6,6 +6,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      CARTO_API_KEY: ${{ secrets.CARTO_API_KEY }}
     strategy:
       fail-fast: false
       matrix:

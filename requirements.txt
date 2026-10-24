@@ -1,6 +1,7 @@
 # Requirements for code:
 folium
 gpxpy
+xyzservices
 
 # Requirements for testing:
 pytest
