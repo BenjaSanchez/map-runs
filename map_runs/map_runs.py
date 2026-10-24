@@ -134,8 +134,12 @@ class RunMap():
             folder_path = self.data_path
 
         # Loop through folder and add runs to map:
-        for file_name in os.listdir(folder_path):
+        file_names = os.listdir(folder_path)
+        total_runs = len(file_names)
+        for index, file_name in enumerate(file_names, start=1):
             self.add_run(os.path.join(folder_path, file_name))
+            if self.verbose and (index % 50 == 0 or index == total_runs):
+                print(f"Processed {index}/{total_runs} runs")
 
         # Print progress (if applicable):
         if self.verbose:
